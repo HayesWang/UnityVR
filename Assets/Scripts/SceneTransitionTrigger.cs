@@ -144,59 +144,36 @@ public class SceneTransitionTrigger : MonoBehaviour
     // 创建描边对象
     private void CreateOutlineObject()
     {
-        // 创建一个父物体作为描边容器
-        outlineObject = new GameObject(gameObject.name + "_Outline");
-        outlineObject.transform.SetParent(transform);
-        outlineObject.transform.localPosition = Vector3.zero;
-        outlineObject.transform.localRotation = Quaternion.identity;
-        outlineObject.transform.localScale = Vector3.one; // 不再使用统一缩放
+        // 创建一个放大版本的物体
+        outlineObject = Instantiate(gameObject, transform.position, transform.rotation, transform);
+        outlineObject.name = gameObject.name + "_Outline";
         
-        // 复制所有MeshFilter和Renderer
-        MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-        foreach (MeshFilter meshFilter in meshFilters)
+        // 移除所有非渲染相关组件
+        Component[] components = outlineObject.GetComponentsInChildren<Component>();
+        foreach (Component component in components)
         {
-            GameObject outlinePart = new GameObject("OutlinePart");
-            outlinePart.transform.SetParent(outlineObject.transform);
-            outlinePart.transform.position = meshFilter.transform.position;
-            outlinePart.transform.rotation = meshFilter.transform.rotation;
-            
-            // 保持原有物体的xyz比例，同时整体放大
-            Vector3 originalScale = meshFilter.transform.localScale;
-            outlinePart.transform.localScale = new Vector3(
-                originalScale.x * outlineScale,
-                originalScale.y * outlineScale,
-                originalScale.z * outlineScale
-            );
-            
-            MeshFilter outlineMeshFilter = outlinePart.AddComponent<MeshFilter>();
-            outlineMeshFilter.sharedMesh = meshFilter.sharedMesh;
-            
-            MeshRenderer outlineRenderer = outlinePart.AddComponent<MeshRenderer>();
-            outlineRenderer.sharedMaterial = outlineMaterial;
+            if (!(component is Transform) && 
+                !(component is MeshFilter) && 
+                !(component is MeshRenderer) && 
+                !(component is SkinnedMeshRenderer))
+            {
+                Destroy(component);
+            }
         }
         
-        // 复制所有SkinnedMeshRenderer
-        SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
+        // 放大描边物体
+        outlineObject.transform.localScale = Vector3.one * outlineScale;
+        
+        // 应用描边材质
+        Renderer[] renderers = outlineObject.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
         {
-            GameObject outlinePart = new GameObject("OutlinePart");
-            outlinePart.transform.SetParent(outlineObject.transform);
-            outlinePart.transform.position = skinnedMeshRenderer.transform.position;
-            outlinePart.transform.rotation = skinnedMeshRenderer.transform.rotation;
-            
-            // 保持原有物体的xyz比例，同时整体放大
-            Vector3 originalScale = skinnedMeshRenderer.transform.localScale;
-            outlinePart.transform.localScale = new Vector3(
-                originalScale.x * outlineScale,
-                originalScale.y * outlineScale,
-                originalScale.z * outlineScale
-            );
-            
-            SkinnedMeshRenderer outlineSkinnedRenderer = outlinePart.AddComponent<SkinnedMeshRenderer>();
-            outlineSkinnedRenderer.sharedMesh = skinnedMeshRenderer.sharedMesh;
-            outlineSkinnedRenderer.sharedMaterial = outlineMaterial;
-            outlineSkinnedRenderer.bones = skinnedMeshRenderer.bones;
-            outlineSkinnedRenderer.rootBone = skinnedMeshRenderer.rootBone;
+            Material[] materials = new Material[renderer.sharedMaterials.Length];
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = outlineMaterial;
+            }
+            renderer.sharedMaterials = materials;
         }
         
         // 默认隐藏描边

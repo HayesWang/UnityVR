@@ -25,6 +25,10 @@ public class HUDControl : MonoBehaviour
     public Color defaultTextColor = Color.white; // 默认文本颜色
     public Color defaultPanelColor = new Color(0, 0, 0, 0.6f); // 默认面板颜色
     public Sprite defaultItemThumbnail;     // 默认物品缩略图
+    
+    [Header("文字描边设置")]
+    public Color outlineColor = Color.white; // 描边颜色
+    public float outlineWidth = 0.2f;       // 描边宽度
 
     private CanvasGroup itemPanelCanvasGroup; // 用于控制物品面板的透明度
     private CanvasGroup triggerCanvasGroup;   // 用于控制触发键的透明度
@@ -83,6 +87,8 @@ public class HUDControl : MonoBehaviour
         {
             // 设置默认文本颜色
             itemNameText.color = defaultTextColor;
+            // 设置默认描边
+            ApplyTextOutline(itemNameText);
         }
         else
         {
@@ -105,6 +111,8 @@ public class HUDControl : MonoBehaviour
         if (itemDescriptionText != null)
         {
             itemDescriptionText.text = "";
+            // 设置默认描边
+            ApplyTextOutline(itemDescriptionText);
         }
 
         // 隐藏物品信息
@@ -145,6 +153,23 @@ public class HUDControl : MonoBehaviour
     }
 
     /// <summary>
+    /// 为TextMeshPro文本应用描边效果
+    /// </summary>
+    /// <param name="textComponent">要应用描边的文本组件</param>
+    private void ApplyTextOutline(TextMeshProUGUI textComponent)
+    {
+        if (textComponent != null)
+        {
+            // 启用描边
+            textComponent.enableVertexGradient = false;
+            textComponent.outlineWidth = outlineWidth;
+            textComponent.outlineColor = outlineColor;
+            // 确保描边可见
+            textComponent.materialForRendering.EnableKeyword("OUTLINE_ON");
+        }
+    }
+
+    /// <summary>
     /// 显示物品信息
     /// </summary>
     /// <param name="item">可拾取物品</param>
@@ -161,6 +186,8 @@ public class HUDControl : MonoBehaviour
         {
             itemNameText.text = item.itemName;
             itemNameText.color = item.itemNameColor;
+            // 重新应用描边
+            ApplyTextOutline(itemNameText);
         }
 
         // 设置物品缩略图
@@ -182,6 +209,8 @@ public class HUDControl : MonoBehaviour
         if (itemDescriptionText != null && !string.IsNullOrEmpty(item.itemDescription))
         {
             itemDescriptionText.text = item.itemDescription;
+            // 重新应用描边
+            ApplyTextOutline(itemDescriptionText);
         }
         else if (itemDescriptionText != null)
         {
@@ -213,6 +242,8 @@ public class HUDControl : MonoBehaviour
         {
             itemNameText.text = itemName;
             itemNameText.color = textColor ?? defaultTextColor;
+            // 重新应用描边
+            ApplyTextOutline(itemNameText);
         }
 
         if (itemThumbnailImage != null)

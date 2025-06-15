@@ -7,6 +7,7 @@ public class CameraControl : MonoBehaviour
     [Header("移动设置")]
     public float moveSpeed = 5f;        // 移动速度
     public float rotationSpeed = 2f;    // 视角旋转速度
+    public float fixedHeight = 1.8f;    // 相机固定高度
 
     [Header("拾取设置")]
     public KeyCode pickUpKey = KeyCode.F; // 拾取按键改为F键
@@ -17,6 +18,7 @@ public class CameraControl : MonoBehaviour
     private float rotationX = 0f;       // 垂直旋转角度
     private float rotationY = 0f;       // 水平旋转角度
     private PickableItem currentItem;   // 当前可拾取的物品
+    private float initialY;             // 初始Y位置
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,9 @@ public class CameraControl : MonoBehaviour
         // 锁定并隐藏鼠标光标
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // 保存初始高度
+        initialY = transform.position.y;
 
         // 如果没有指定HUD控制器，尝试自动查找
         if (hudControl == null)
@@ -68,11 +73,25 @@ public class CameraControl : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");    // A/D 或 左右箭头
         float vertical = Input.GetAxis("Vertical");        // W/S 或 上下箭头
 
-        // 计算移动方向
-        Vector3 moveDirection = transform.right * horizontal + transform.forward * vertical;
+        // 计算移动方向，但只使用水平分量
+        Vector3 forward = transform.forward;
+        forward.y = 0; // 清除Y分量，确保只在水平面移动
+        forward.Normalize();
+        
+        Vector3 right = transform.right;
+        right.y = 0; // 清除Y分量，确保只在水平面移动
+        right.Normalize();
+        
+        Vector3 moveDirection = right * horizontal + forward * vertical;
         
         // 应用移动
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        Vector3 newPosition = transform.position + moveDirection * moveSpeed * Time.deltaTime;
+        
+        // 保持固定高度
+        newPosition.y = initialY;
+        
+        // 更新位置
+        transform.position = newPosition;
     }
 
     void HandlePickup()
