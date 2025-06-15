@@ -205,6 +205,8 @@ MonoBehaviour:
   detectionDistance: 3
   outlineColor: {r: 0, g: 0.8, b: 1, a: 1}
   outlineScale: 1.05
+  transitionParticlePrefab: {fileID: 6209429821675368119, guid: 2d5eb0fee8a6b4184acf09dee8a13863, type: 3}
+  particleEffectDuration: 1.5
 --- !u!65 &1424201179
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -15,6 +15,10 @@ public class SceneTransitionTrigger : MonoBehaviour
     public Color outlineColor = new Color(0f, 0.8f, 1f, 1f); // 蓝色描边
     public float outlineScale = 1.05f;     // 描边物体的放大比例
 
+    [Header("场景转换特效")]
+    public GameObject transitionParticlePrefab; // 场景转换粒子特效预制体
+    public float particleEffectDuration = 1.5f; // 粒子特效持续时间
+
     private bool isPlayerNearby = false;
     private HUDControl hudControl;
     private Transform mainCamera;
@@ -34,6 +38,8 @@ public class SceneTransitionTrigger : MonoBehaviour
         // 创建描边材质和对象
         CreateOutlineMaterial();
         CreateOutlineObject();
+
+        // 移除了默认粒子特效的创建，只使用指定的预制体
     }
 
     private void Update()
@@ -41,51 +47,77 @@ public class SceneTransitionTrigger : MonoBehaviour
         // 检查与相机的距离
         CheckDistance();
         
-        // 如果玩家在附近
+        // 如果玩家在附近，按下交互键时才播放粒子效果并加载场景
         if (isPlayerNearby && Input.GetKeyDown(interactionKey))
         {
-            LoadTargetScene();
+            PlayTransitionEffectAndLoadScene();
         }
     }
     
-    // 检查与相机的距离
-    private void CheckDistance()
+    // 播放转场特效并加载场景
+    private void PlayTransitionEffectAndLoadScene()
     {
-        if (mainCamera == null) return;
-        
-        float distance = Vector3.Distance(mainCamera.position, transform.position);
-        
-        // 如果在检测距离内，显示描边和提示
-        if (distance <= detectionDistance)
+        if (string.IsNullOrEmpty(targetSceneName))
         {
-            if (!isPlayerNearby)
+            Debug.LogError("目标场景名称未设置!");
+            return;
+        }
+        
+        // 停止显示交互提示
+        if (hudControl != null)
+        {
+            hudControl.HideItemInfo();
+            hudControl.HideTriggerButton();
+        }
+        
+        // 播放粒子特效 - 只在按下交互按钮时播放指定的粒子特效
+        if (transitionParticlePrefab != null)
+        {
+            // 在玩家与触发器的交互点创建粒子效果
+            Vector3 effectPosition = transform.position;
+            if (mainCamera != null)
             {
-                isPlayerNearby = true;
-                ShowHighlight();
-                
-                // 显示交互提示
-                if (hudControl != null)
-                {
-                    hudControl.ShowItemInfo(interactionPrompt);
-                    hudControl.ShowTriggerButton();
-                }
+                // 计算玩家与物体之间的中点，或者略微偏向玩家位置
+                effectPosition = Vector3.Lerp(transform.position, mainCamera.position, 0.3f);
             }
+            
+            GameObject particleEffect = Instantiate(transitionParticlePrefab, effectPosition, Quaternion.identity);
+            particleEffect.SetActive(true);
+            
+            // 不要立即销毁粒子效果对象，让它完成播放
+            ParticleSystem ps = particleEffect.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Play();
+                Destroy(particleEffect, particleEffectDuration);
+            }
+            
+            Debug.Log("播放场景转换粒子特效");
         }
         else
         {
-            if (isPlayerNearby)
-            {
-                isPlayerNearby = false;
-                HideHighlight();
-                
-                // 隐藏交互提示
-                if (hudControl != null)
-                {
-                    hudControl.HideItemInfo();
-                    hudControl.HideTriggerButton();
-                }
-            }
+            Debug.LogWarning("未指定场景转换粒子特效预制体!");
         }
+        
+        Debug.Log("正在加载场景: " + targetSceneName);
+        
+        // 延迟加载场景，让粒子效果有时间播放
+        if (SceneManager.Instance != null)
+        {
+            SceneManager.Instance.LoadScene(targetSceneName, particleEffectDuration * 0.7f);
+        }
+        else
+        {
+            // 如果没有找到SceneManager实例，使用协程延迟加载
+            StartCoroutine(DelayedLoadScene(targetSceneName, particleEffectDuration * 0.7f));
+        }
+    }
+    
+    // 延迟加载场景的协程(备用方案)
+    private System.Collections.IEnumerator DelayedLoadScene(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
     // 创建描边材质
@@ -236,18 +268,50 @@ public class SceneTransitionTrigger : MonoBehaviour
         }
     }
 
-    // 加载目标场景
+    // 加载目标场景 (替换为使用PlayTransitionEffectAndLoadScene)
     private void LoadTargetScene()
     {
-        if (string.IsNullOrEmpty(targetSceneName))
-        {
-            Debug.LogError("目标场景名称未设置!");
+        PlayTransitionEffectAndLoadScene();
+    }
+
+    // 检查与相机的距离
+    private void CheckDistance()
+    {
+        if (mainCamera == null)
             return;
+            
+        // 计算当前对象与相机的距离
+        float distance = Vector3.Distance(transform.position, mainCamera.position);
+        
+        // 之前不在范围内，现在进入范围
+        if (!isPlayerNearby && distance <= detectionDistance)
+        {
+            isPlayerNearby = true;
+            
+            // 显示交互提示
+            if (hudControl != null)
+            {
+                hudControl.ShowTriggerButton();
+                hudControl.ShowItemInfo(interactionPrompt);
+            }
+            
+            // 显示描边高亮效果
+            ShowHighlight();
         }
-        
-        Debug.Log("正在加载场景: " + targetSceneName);
-        
-        // 使用Unity内置的SceneManager加载场景
-        UnityEngine.SceneManagement.SceneManager.LoadScene(targetSceneName);
+        // 之前在范围内，现在离开范围
+        else if (isPlayerNearby && distance > detectionDistance)
+        {
+            isPlayerNearby = false;
+            
+            // 隐藏交互提示
+            if (hudControl != null)
+            {
+                hudControl.HideTriggerButton();
+                hudControl.HideItemInfo();
+            }
+            
+            // 隐藏描边高亮效果
+            HideHighlight();
+        }
     }
 }
