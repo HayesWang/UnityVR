@@ -14,11 +14,16 @@ public class CameraControl : MonoBehaviour
 
     [Header("HUD引用")]
     public HUDControl hudControl;       // HUD控制器引用
+    
+    [Header("旁白控制")]
+    public NarrationManager narrationManager; // 旁白管理器引用
+    public bool canMoveWhileNarration = false; // 旁白期间是否可以移动
 
     private float rotationX = 0f;       // 垂直旋转角度
     private float rotationY = 0f;       // 水平旋转角度
     private PickableItem currentItem;   // 当前可拾取的物品
     private float initialY;             // 初始Y位置
+    private bool canMove = true;        // 是否可以移动
 
     // Start is called before the first frame update
     void Start()
@@ -39,17 +44,61 @@ public class CameraControl : MonoBehaviour
                 Debug.LogWarning("未找到HUDControl组件，物品名称将不会显示在HUD上");
             }
         }
+        
+        // 如果没有指定旁白管理器，尝试自动查找
+        if (narrationManager == null)
+        {
+            narrationManager = FindObjectOfType<NarrationManager>();
+            if (narrationManager == null)
+            {
+                Debug.LogWarning("未找到NarrationManager组件，旁白控制将不起作用");
+            }
+            else
+            {
+                // 订阅旁白状态变化事件
+                narrationManager.OnNarrationStateChanged += OnNarrationStateChanged;
+                
+                // 初始化移动状态
+                if (!canMoveWhileNarration)
+                {
+                    canMove = !narrationManager.IsNarrationActive;
+                }
+            }
+        }
+    }
+    
+    // 在销毁时取消订阅事件
+    private void OnDestroy()
+    {
+        if (narrationManager != null)
+        {
+            narrationManager.OnNarrationStateChanged -= OnNarrationStateChanged;
+        }
+    }
+    
+    // 处理旁白状态变化
+    private void OnNarrationStateChanged(bool isActive)
+    {
+        if (!canMoveWhileNarration)
+        {
+            canMove = !isActive;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 处理视角旋转
+        // 处理视角旋转（无论是否可移动，视角旋转总是可用的）
         HandleRotation();
-        // 处理移动
-        HandleMovement();
-        // 处理拾取
-        HandlePickup();
+        
+        // 只有在可移动时才处理移动和拾取
+        if (canMove)
+        {
+            // 处理移动
+            HandleMovement();
+            // 处理拾取
+            HandlePickup();
+        }
     }
 
     void HandleRotation()
