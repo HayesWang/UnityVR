@@ -20,6 +20,7 @@ public class NarrationManager : MonoBehaviour
     [SerializeField] private NarrationPage[] narrationPages;
     [SerializeField] private bool autoProgress = false;    // 是否自动翻页
     [SerializeField] private KeyCode nextPageKey = KeyCode.Space; // 手动翻页按键
+    [SerializeField] private bool playOnStart = true;      // 是否在场景开始时自动播放
     
     [Header("UI组件")]
     [SerializeField] private TextMeshProUGUI textDisplay;
@@ -53,7 +54,17 @@ public class NarrationManager : MonoBehaviour
             textDisplay.color = textColor;
         }
         
-        // 如果有独白页，立即显示第一页
+        // 如果不需要自动播放，则隐藏面板
+        if (!playOnStart)
+        {
+            if (narrationPanel != null)
+            {
+                narrationPanel.SetActive(false);
+            }
+            return;
+        }
+        
+        // 如果有独白页且需要自动播放，立即显示第一页
         if (narrationPages != null && narrationPages.Length > 0)
         {
             ShowNextPage();
@@ -63,7 +74,7 @@ public class NarrationManager : MonoBehaviour
     private void Update()
     {
         // 检测按键翻页
-        if (Input.GetKeyDown(nextPageKey) && !isDisplaying)
+        if (Input.GetKeyDown(nextPageKey) && !isDisplaying && IsNarrationActive)
         {
             ShowNextPage();
         }
@@ -87,6 +98,12 @@ public class NarrationManager : MonoBehaviour
         {
             // 设置旁白状态为活动
             SetNarrationActive(true);
+            
+            // 确保面板是可见的
+            if (narrationPanel != null)
+            {
+                narrationPanel.SetActive(true);
+            }
             
             displayCoroutine = StartCoroutine(DisplayPage(narrationPages[currentPageIndex]));
         }
