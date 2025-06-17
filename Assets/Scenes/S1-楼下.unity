@@ -543,13 +543,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300260241}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00057154003, y: -0.9850693, z: -0.031204853, w: 0.1693063}
+  m_LocalRotation: {x: 0.012924424, y: -0.9619377, z: -0.028408265, w: -0.27148092}
   m_LocalPosition: {x: 9.09, y: 1.43, z: -7.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -3.536, y: -160.479, z: -0.542}
+  m_LocalEulerAnglesHint: {x: -3.536, y: -211.504, z: -0.542}
 --- !u!114 &1300260245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,6 +585,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 3062252750056744100, guid: d79b25b6f3ce24527ac0e3f42cd253a6, type: 3}
+      propertyPath: keyboardTriggerSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d1abb4b1086fa47999b116c3d0a3152d, type: 3}
     - target: {fileID: 3154181191571320301, guid: d79b25b6f3ce24527ac0e3f42cd253a6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
