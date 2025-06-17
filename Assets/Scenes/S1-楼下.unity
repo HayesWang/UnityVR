@@ -133,6 +133,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eac5b4d1348148d3a0d92d0f8952181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &796304559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dc612641f10904e489f8eba536a6391f, type: 3}
+  m_PrefabInstance: {fileID: 1259057027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &796304562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796304559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8745d7be33074a7abd0689e8605f119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpDistance: 2
+  itemName: "\u94B1\u5305"
+  isPicked: 0
+  canPickup: 1
+  itemThumbnail: {fileID: 0}
+  itemNameColor: {r: 1, g: 1, b: 1, a: 1}
+  itemDescription: 
+  outlineColor: {r: 1, g: 0.7466958, b: 0, a: 1}
+  outlineScale: 1.05
+--- !u!136 &796304563
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796304559}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.231856
+  m_Height: 2.463712
+  m_Direction: 1
+  m_Center: {x: 0.41439548, y: -0.000000008038332, z: 0.31746045}
 --- !u!1 &831930408
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,15 +400,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc612641f10904e489f8eba536a6391f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.513
+      value: 1.891
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc612641f10904e489f8eba536a6391f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.788
+      value: 0.162
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc612641f10904e489f8eba536a6391f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.608731
+      value: -12.767
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc612641f10904e489f8eba536a6391f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -401,9 +450,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -5151492872390713093, guid: dc612641f10904e489f8eba536a6391f, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc612641f10904e489f8eba536a6391f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1301722429}
+      addedObject: {fileID: 796304562}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc612641f10904e489f8eba536a6391f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 796304563}
   m_SourcePrefab: {fileID: 100100000, guid: dc612641f10904e489f8eba536a6391f, type: 3}
 --- !u!1 &1300260241
 GameObject:
@@ -521,32 +573,6 @@ MonoBehaviour:
   hudControl: {fileID: 639779884}
   narrationManager: {fileID: 0}
   canMoveWhileNarration: 0
---- !u!1 &1301722427 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5151492872390713093, guid: dc612641f10904e489f8eba536a6391f, type: 3}
-  m_PrefabInstance: {fileID: 1259057027}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1301722429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301722427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8745d7be33074a7abd0689e8605f119, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickUpDistance: 30
-  itemName: "\u7269\u54C1"
-  isPicked: 0
-  canPickup: 1
-  itemThumbnail: {fileID: 0}
-  itemNameColor: {r: 1, g: 1, b: 1, a: 1}
-  itemDescription: 
-  outlineColor: {r: 1, g: 0.8, b: 0, a: 1}
-  outlineScale: 1.05
 --- !u!1001 &1658362471
 PrefabInstance:
   m_ObjectHideFlags: 0
