@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8, y: -62}
   m_SizeDelta: {x: -500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3746603341645476454
@@ -65,17 +65,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u65B0\u7684\u5B57\u4F53"
+  m_text: "\u7B2C\u4E00\u884C\n\u7B2C\u4E8C\u884C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7ab470164d55f4e07b4087e17be154af, type: 2}
-  m_sharedMaterial: {fileID: 7109075510241761488, guid: 7ab470164d55f4e07b4087e17be154af, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
+  m_sharedMaterial: {fileID: 5675399759180289191, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 20
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 109.34241, y: 43.991837, z: 114.83887, w: 20.52626}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -264,6 +264,10 @@ MonoBehaviour:
   fadeOutDuration: 1.5
   textColor: {r: 1, g: 1, b: 1, a: 1}
   audioSource: {fileID: 0}
+  hideHUDDuringNarration: 0
+  hudControl: {fileID: 0}
+  useVerticalText: 0
+  verticalRotation: 90
 --- !u!1 &7051174740238043920
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,10 +301,10 @@ RectTransform:
   - {fileID: 6291105139144345464}
   m_Father: {fileID: 6724734053187716449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 153}
+  m_SizeDelta: {x: 1887, y: 306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5325892308701547760
 CanvasRenderer:
@@ -323,14 +327,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5686275}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fca68db6fd2d844a19f24bdede8c15ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32daef15acb1e42549aec6e5263ff43e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

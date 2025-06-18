@@ -314,6 +314,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41cd7f489334ee1839b89f89c037f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &675997338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3062252750056744100, guid: d79b25b6f3ce24527ac0e3f42cd253a6, type: 3}
+  m_PrefabInstance: {fileID: 228468635}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eac5b4d1348148d3a0d92d0f8952181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &919965376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -479,6 +490,18 @@ PrefabInstance:
       objectReference: {fileID: 1722516239}
     - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
       propertyPath: playOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
+      propertyPath: textColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
+      propertyPath: textColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
+      propertyPath: textColor.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
@@ -698,6 +721,98 @@ MonoBehaviour:
   hudControl: {fileID: 0}
   narrationManager: {fileID: 439178275}
   canMoveWhileNarration: 0
+--- !u!1 &1612584715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612584718}
+  - component: {fileID: 1612584717}
+  - component: {fileID: 1612584716}
+  m_Layer: 0
+  m_Name: RenderTexture
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &1612584716
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612584715}
+  m_Enabled: 1
+--- !u!20 &1612584717
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612584715}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 26.991467
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1612584718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612584715}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 446.5, y: 493, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1722516233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5989401287847776840, guid: c2379347134c842a2946535afe41c0a7, type: 3}
@@ -1044,12 +1159,24 @@ PrefabInstance:
       value: "\u5F00\u5934\u9ED1\u5C4F"
       objectReference: {fileID: 0}
     - target: {fileID: 7538779305999714800, guid: 3bd7b6c9d01ca457c9863b4b4f2b3f62, type: 3}
+      propertyPath: hudControl
+      value: 
+      objectReference: {fileID: 675997338}
+    - target: {fileID: 7538779305999714800, guid: 3bd7b6c9d01ca457c9863b4b4f2b3f62, type: 3}
+      propertyPath: useVerticalText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538779305999714800, guid: 3bd7b6c9d01ca457c9863b4b4f2b3f62, type: 3}
+      propertyPath: hideHUDDuringNarration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538779305999714800, guid: 3bd7b6c9d01ca457c9863b4b4f2b3f62, type: 3}
       propertyPath: narrationPages.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7538779305999714800, guid: 3bd7b6c9d01ca457c9863b4b4f2b3f62, type: 3}
       propertyPath: narrationPages.Array.data[0].content
-      value: "2002\u5E74\uFF0C\u590F\uFF0C\u6211\u521A\u521A\u7ED3\u675F\u4E86\u56DB\u5E74\u7EA7\u671F\u672B\u8003\u8BD5\uFF0C\u4F46\u7238\u7238\u7ED9\u6211\u7684\u96F6\u82B1\u94B1\u88AB\u6211\u5F04\u4E22\u4E86"
+      value: "\u4E8C\u3007\u3007\u4E8C\u5E74  \u590F\n\n\u6211\u521A\u521A\u7ED3\u675F\u4E86\n\u56DB\u5E74\u7EA7\u671F\u672B\u8003\u8BD5\uFF0C\n\u4F46\u7238\u7238\u7ED9\u6211\u7684\u96F6\u82B1\u94B1\n\u88AB\u6211\u5F04\u4E22\u4E86"
       objectReference: {fileID: 0}
     - target: {fileID: 7538779305999714800, guid: 3bd7b6c9d01ca457c9863b4b4f2b3f62, type: 3}
       propertyPath: narrationPages.Array.data[1].content
@@ -1141,12 +1268,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
+      propertyPath: textColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
+      propertyPath: textColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
+      propertyPath: textColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
       propertyPath: narrationPages.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
       propertyPath: narrationPages.Array.data[0].content
-      value: "\u73B0\u5728\u8FD8\u4E0D\u80FD\u8FDB\u53BB\uFF0C\u6211\u8981\u628A\u5F04\u4E22\u7684\u94B1\u5305\u627E\u5230\uFF0C\u53BB\u90BB\u5C45\u5BB6\u95EE\u95EE\u5427"
+      value: "\u73B0\u5728\u8FD8\u4E0D\u80FD\u8FDB\u53BB\uFF0C\u6211\u8981\u628A\u5F04\u4E22\u7684\u96F6\u82B1\u94B1\u627E\u5230\uFF0C\u53BB\u6572\u6572\u8D70\u5ECA\u53F3\u624B\u8FB9\u7B2C\u4E00\u6247\u7EA2\u8272\u7684\u95E8\u95EE\u95EE\u90BB\u5C45\u5976\u5976\u5427"
       objectReference: {fileID: 0}
     - target: {fileID: 6414825019585095523, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
       propertyPath: m_Name
@@ -1314,3 +1453,4 @@ SceneRoots:
   - {fileID: 8350997513277510816}
   - {fileID: 6386936018348324937}
   - {fileID: 228468635}
+  - {fileID: 1612584718}

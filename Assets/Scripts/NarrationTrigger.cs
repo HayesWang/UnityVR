@@ -24,7 +24,8 @@ public class NarrationTrigger : MonoBehaviour
     
     private GameObject outlineObject;         // 描边对象
     private Material outlineMaterial;         // 描边材质
-    private bool hasInteracted = false;       // 是否已经交互过
+    [HideInInspector]
+    public bool hasInteracted = false;       // 是否已经交互过
     private bool isPlayerNearby = false;      // 玩家是否在附近
     private HUDControl hudControl;            // HUD控制器引用
 
@@ -108,7 +109,17 @@ public class NarrationTrigger : MonoBehaviour
     {
         if (narrationManager != null)
         {
-            hasInteracted = true;
+            // 如果之前未交互，则增加进度
+            if (!hasInteracted)
+            {
+                hasInteracted = true;
+                
+                // 更新HUD语音进度
+                if (hudControl != null)
+                {
+                    hudControl.IncreaseNarrationsProgress();
+                }
+            }
             
             // 隐藏交互提示
             if (hudControl != null)
