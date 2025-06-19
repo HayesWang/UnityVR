@@ -334,7 +334,7 @@ MonoBehaviour:
   fadeOutDuration: 1.5
   textColor: {r: 1, g: 1, b: 1, a: 1}
   audioSource: {fileID: 0}
-  hideHUDDuringNarration: 0
+  hideHUDDuringNarration: 1
   hudControl: {fileID: 0}
-  useVerticalText: 0
+  useVerticalText: 1
   verticalRotation: 90

@@ -118,7 +118,8 @@ MonoBehaviour:
   detailPanel: {fileID: 5773771495855207355}
   itemNameText: {fileID: 6222676536305045206}
   itemDescriptionText: {fileID: 1328097733925402615}
-  displayImage: {fileID: 0}
+  itemEraText: {fileID: 5971803023251401408}
+  displayImage: {fileID: 8695444303382980128}
   renderCamera: {fileID: 0}
   renderTexture: {fileID: 8400000, guid: 035ebd23c76fa417db421c0116599cc1, type: 2}
   dragSpeed: 30
