@@ -510,12 +510,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
       propertyPath: narrationPages.Array.data[0].content
-      value: "\u627E\u94B1\uFF1F\u521A\u770B\u89C1\u4E2A\u84DD\u8272\u5C0F\u5E03\u5305\u4ECE\u697C\u68AF\u4E0A\u6EDA\u4E0B\u53BB\u4E86..."
+      value: "\u627E\u94B1\uFF1F\u521A\u89C1\u4E2A\u5C0F\u84DD\u5E03\u5305\u4ECE\u697C\u68AF\u53E3\u6EDA\u4E0B\u53BB\u4E86\uFF0C\u6EDA\u5F97\u633A\u8FDC\u7684\uFF0C\u597D\u50CF\u5728\u9662\u5B50\u7684\u53F3\u8FB9..."
       objectReference: {fileID: 0}
     - target: {fileID: 2137776499168044185, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
       propertyPath: narrationPages.Array.data[0].voiceClip
       value: 
-      objectReference: {fileID: 8300000, guid: eedfd85e5a41b4e07a160894fd3f95b1, type: 3}
+      objectReference: {fileID: 8300000, guid: 65e35fb6182f044e1b490eed73b04d7e, type: 3}
     - target: {fileID: 6414825019585095523, guid: ecf35ac330e33468ea8d2dcc774b0b57, type: 3}
       propertyPath: m_Name
       value: "\u90BB\u5C45\u5BB6\u65C1\u767D"
