@@ -1727,6 +1727,10 @@ PrefabInstance:
       value: HUD
       objectReference: {fileID: 0}
     - target: {fileID: 3062252750056744100, guid: d79b25b6f3ce24527ac0e3f42cd253a6, type: 3}
+      propertyPath: currentEra
+      value: 2002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3062252750056744100, guid: d79b25b6f3ce24527ac0e3f42cd253a6, type: 3}
       propertyPath: keyboardTriggerSprite
       value: 
       objectReference: {fileID: 21300000, guid: d1abb4b1086fa47999b116c3d0a3152d, type: 3}
@@ -1983,6 +1987,9 @@ MonoBehaviour:
   outlineScale: 1.05
   transitionParticlePrefab: {fileID: 6209429821675368119, guid: 2d5eb0fee8a6b4184acf09dee8a13863, type: 3}
   particleEffectDuration: 1.5
+  playNarrationBeforeTransition: 0
+  narrationManager: {fileID: 0}
+  waitAfterNarration: 1
 --- !u!135 &1714801758
 SphereCollider:
   m_ObjectHideFlags: 0
