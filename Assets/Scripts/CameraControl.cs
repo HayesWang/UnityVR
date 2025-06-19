@@ -40,6 +40,7 @@ public class CameraControl : MonoBehaviour
     private PickableItem currentItem;   // 当前可拾取的物品
     private float initialY;             // 初始Y位置
     private bool canMove = true;        // 是否可以移动
+    private bool isControlEnabled = true;  // 控制是否启用相机控制
 
     // Start is called before the first frame update
     void Start()
@@ -141,6 +142,9 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 如果控制被禁用，不执行任何操作
+        if (!isControlEnabled) return;
+        
         // 如果在运行时修改了方向锁定设置，更新移动权重
         #if UNITY_EDITOR
         UpdateMovementWeights();
@@ -292,7 +296,8 @@ public class CameraControl : MonoBehaviour
     {
         if (item != null && !item.isPicked && item.canPickup)
         {
-            item.isPicked = true;
+            // 调用物品自身的PickUp方法而不是直接设置标志和隐藏物体
+            item.PickUp();
             
             // 隐藏HUD上的物品名称
             if (hudControl != null)
@@ -300,10 +305,15 @@ public class CameraControl : MonoBehaviour
                 hudControl.HideItemInfo();
             }
             
-            // 让物体消失
-            item.gameObject.SetActive(false);
-            
             currentItem = null;
+            
+            // 注意：不要在这里设置物体不可见，因为PickUp方法中可能需要物体仍然存在
+            // 让PickUp方法决定是否隐藏物体
         }
+    }
+
+    public void EnableControl(bool enable)
+    {
+        isControlEnabled = enable;
     }
 }

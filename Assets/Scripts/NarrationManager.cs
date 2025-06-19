@@ -32,10 +32,20 @@ public class NarrationManager : MonoBehaviour
     
     [Header("音频设置")]
     [SerializeField] private AudioSource audioSource;
+    
+    [Header("HUD设置")]
+    [SerializeField] private bool hideHUDDuringNarration = false; // 新增：旁白期间隐藏HUD
+    [SerializeField] private HUDControl hudControl; // HUD控制器引用
+    
+    [Header("文本显示设置")]
+    [SerializeField] private bool useVerticalText = false; // 新增：使用竖排文字
+    [Tooltip("竖排文字的旋转值，默认90度")]
+    [SerializeField] private int verticalRotation = 90;    // 新增：竖排文字旋转角度
 
     private int currentPageIndex = -1;
     private bool isDisplaying = false;
     private Coroutine displayCoroutine;
+    private GameObject[] hudElementsToHide; // 存储需要隐藏的HUD元素
 
     // 旁白状态属性和事件
     public bool IsNarrationActive { get; private set; } = false;
@@ -52,6 +62,12 @@ public class NarrationManager : MonoBehaviour
         if (textDisplay != null)
         {
             textDisplay.color = textColor;
+        }
+        
+        // 查找HUD控制器（如果尚未分配）
+        if (hudControl == null)
+        {
+            hudControl = FindObjectOfType<HUDControl>();
         }
         
         // 如果不需要自动播放，则隐藏面板
@@ -105,6 +121,30 @@ public class NarrationManager : MonoBehaviour
                 narrationPanel.SetActive(true);
             }
             
+            // 如果设置了隐藏HUD，则隐藏HUD
+            if (hideHUDDuringNarration)
+            {
+                if (hudControl != null)
+                {
+                    Debug.Log("尝试隐藏HUD - HUDControl已找到");
+                    HideHUD();
+                }
+                else
+                {
+                    Debug.LogWarning("无法隐藏HUD - HUDControl为null，尝试重新查找");
+                    hudControl = FindObjectOfType<HUDControl>();
+                    if (hudControl != null)
+                    {
+                        Debug.Log("已重新找到HUDControl，现在隐藏HUD");
+                        HideHUD();
+                    }
+                    else
+                    {
+                        Debug.LogError("无法找到HUDControl组件，无法隐藏HUD");
+                    }
+                }
+            }
+            
             displayCoroutine = StartCoroutine(DisplayPage(narrationPages[currentPageIndex]));
         }
         else
@@ -121,10 +161,18 @@ public class NarrationManager : MonoBehaviour
     {
         isDisplaying = true;
         
-        // 显示文本
+        // 显示文本（根据设置决定是否使用竖排）
         if (textDisplay != null)
         {
-            textDisplay.text = page.content;
+            string displayContent = page.content;
+            
+            // 如果启用了竖排文字，添加旋转标签
+            if (useVerticalText)
+            {
+                displayContent = $"<rotate={verticalRotation}>{displayContent}";
+            }
+            
+            textDisplay.text = displayContent;
         }
         
         // 播放音频
@@ -190,6 +238,12 @@ public class NarrationManager : MonoBehaviour
         
         // 设置旁白状态为非活动
         SetNarrationActive(false);
+        
+        // 如果之前隐藏了HUD，现在恢复显示
+        if (hideHUDDuringNarration && hudControl != null)
+        {
+            ShowHUD();
+        }
     }
 
     /// <summary>
@@ -236,6 +290,25 @@ public class NarrationManager : MonoBehaviour
             images[i].color = c;
         }
         
+        // 如果设置了隐藏HUD，则隐藏HUD
+        if (hideHUDDuringNarration)
+        {
+            if (hudControl != null)
+            {
+                Debug.Log("ResetNarration: 尝试隐藏HUD");
+                HideHUD();
+            }
+            else
+            {
+                Debug.LogWarning("ResetNarration: HUDControl为null，尝试重新查找");
+                hudControl = FindObjectOfType<HUDControl>();
+                if (hudControl != null)
+                {
+                    HideHUD();
+                }
+            }
+        }
+        
         // 显示第一页
         ShowNextPage();
     }
@@ -250,5 +323,79 @@ public class NarrationManager : MonoBehaviour
             currentPageIndex = pageIndex - 1;
             ShowNextPage();
         }
+    }
+    
+    /// <summary>
+    /// 隐藏HUD界面
+    /// </summary>
+    private void HideHUD()
+    {
+        if (hudControl == null) return;
+        
+        // 使用HUDControl提供的方法直接隐藏所有HUD元素
+        hudControl.HideAllHUDElements();
+        
+        // 记录日志，方便调试
+        Debug.Log("NarrationManager: HUD已隐藏");
+    }
+    
+    /// <summary>
+    /// 恢复显示HUD界面
+    /// </summary>
+    private void ShowHUD()
+    {
+        if (hudControl == null) return;
+        
+        // 使用HUDControl提供的方法恢复显示HUD元素
+        hudControl.ShowAllHUDElements();
+        
+        // 记录日志，方便调试
+        Debug.Log("NarrationManager: HUD已恢复显示");
+    }
+
+    /// <summary>
+    /// 显示指定的旁白内容和音频
+    /// </summary>
+    public void ShowNarration(string narrationContent, AudioClip audioClip)
+    {
+        // 检查是否有内容要显示
+        if (string.IsNullOrEmpty(narrationContent) && audioClip == null)
+        {
+            Debug.LogWarning("旁白内容和音频都为空，无法显示旁白");
+            return;
+        }
+        
+        // 创建临时旁白页面数组
+        NarrationPage[] tempPages = new NarrationPage[1];
+        tempPages[0] = new NarrationPage
+        {
+            content = narrationContent,
+            voiceClip = audioClip,
+            displayTime = audioClip != null ? audioClip.length + 1f : 5f // 如果有音频，持续时间为音频长度+1秒，否则为5秒
+        };
+        
+        // 临时保存原始页面
+        NarrationPage[] originalPages = narrationPages;
+        
+        // 使用新的临时页面
+        narrationPages = tempPages;
+        
+        // 重置并显示旁白
+        ResetNarration();
+        
+        // 在协程结束后恢复原始页面
+        StartCoroutine(RestoreOriginalPages(originalPages));
+    }
+
+    /// <summary>
+    /// 恢复原始旁白页面
+    /// </summary>
+    private IEnumerator RestoreOriginalPages(NarrationPage[] originalPages)
+    {
+        // 等待当前旁白完成（等待旁白变为非活动状态）
+        yield return new WaitUntil(() => !IsNarrationActive);
+        
+        // 恢复原始页面
+        narrationPages = originalPages;
     }
 }

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8, y: -62}
   m_SizeDelta: {x: -500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3746603341645476454
@@ -65,17 +65,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u65B0\u7684\u5B57\u4F53"
+  m_text: "\u94B1\u5305\u662F\u7A7A\u7684\uFF01\u4E00\u5B9A\u662F\u786C\u5E01\u4E0D\u5C0F\u5FC3\u6389\u51FA\u53BB\u4E86..."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7ab470164d55f4e07b4087e17be154af, type: 2}
-  m_sharedMaterial: {fileID: 7109075510241761488, guid: 7ab470164d55f4e07b4087e17be154af, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f7d49e44cfd04072b962c4649bead01, type: 2}
+  m_sharedMaterial: {fileID: 4089814718633245986, guid: 8f7d49e44cfd04072b962c4649bead01, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,19 +92,19 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 20
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 109.34241, y: 43.991837, z: 114.83887, w: 20.52626}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -250,10 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   narrationPages:
-  - content: "2002\u5E74\uFF0C\u590F\uFF0C\u6211\u521A\u521A\u7ED3\u675F\u4E86\u56DB\u5E74\u7EA7\u671F\u672B\u8003\u8BD5\uFF0C\u4F46\u7238\u7238\u7ED9\u6211\u7684\u96F6\u82B1\u94B1\u88AB\u6211\u5F04\u4E22\u4E86"
-    displayTime: 0
-    voiceClip: {fileID: 0}
-  - content: "\u5728\u4E8C\u697C\u3002\u3002\u3002"
+  - content: 
     displayTime: 0
     voiceClip: {fileID: 0}
   autoProgress: 0
@@ -262,8 +259,12 @@ MonoBehaviour:
   textDisplay: {fileID: 2958149311962978814}
   narrationPanel: {fileID: 7051174740238043920}
   fadeOutDuration: 1.5
-  textColor: {r: 1, g: 1, b: 1, a: 1}
+  textColor: {r: 0, g: 0, b: 0, a: 1}
   audioSource: {fileID: 0}
+  hideHUDDuringNarration: 0
+  hudControl: {fileID: 0}
+  useVerticalText: 0
+  verticalRotation: 90
 --- !u!1 &7051174740238043920
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,10 +298,10 @@ RectTransform:
   - {fileID: 6291105139144345464}
   m_Father: {fileID: 6724734053187716449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 153}
+  m_SizeDelta: {x: 1887, y: 306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5325892308701547760
 CanvasRenderer:
@@ -323,14 +324,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5686275}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fca68db6fd2d844a19f24bdede8c15ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32daef15acb1e42549aec6e5263ff43e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

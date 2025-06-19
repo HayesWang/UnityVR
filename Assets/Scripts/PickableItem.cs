@@ -2,23 +2,32 @@ using UnityEngine;
 
 public class PickableItem : MonoBehaviour
 {
+    [Header("物品基本信息")]
+    public string itemId;          // 物品唯一标识符（用于匹配预设物体）
+    public string itemName;        // 物品名称
+    public string itemDescription; // 物品描述
+    public string itemEra;         // 物品年代
+
     [Header("基本设置")]
     public float pickUpDistance = 30f;    // 拾取距离
-    public string itemName = "物品";      // 物品名称
     public bool isPicked = false;        // 是否已被拾取
     public bool canPickup = true;        // 是否可以拾取
 
     [Header("UI显示设置")]
     public Sprite itemThumbnail;         // 物品缩略图
     public Color itemNameColor = Color.white; // 物品名称颜色
-    public string itemDescription = "";   // 物品描述
 
     [Header("描边设置")]
     public Color outlineColor = new Color(1f, 0.8f, 0f, 1f); // 金色
     public float outlineScale = 1.05f;    // 描边物体的放大比例
 
+    [Header("详情界面设置")]
+    public ObjectDetail detailPanelPrefab;  // 在Inspector中指定详情界面
+
     private GameObject outlineObject;     // 描边对象
     private Material outlineMaterial;     // 描边材质
+    // 添加HUD控制器引用
+    private HUDControl hudControl;
 
     void Start()
     {
@@ -42,6 +51,9 @@ public class PickableItem : MonoBehaviour
         
         // 创建描边对象
         CreateOutlineObject();
+        
+        // 获取HUD控制器
+        hudControl = FindObjectOfType<HUDControl>();
     }
 
     void CreateOutlineObject()
@@ -122,5 +134,49 @@ public class PickableItem : MonoBehaviour
     public void HideName()
     {
         HideHighlight();
+    }
+
+    // 修改拾取物品方法
+    public void PickUp()
+    {
+        if (!isPicked && canPickup)
+        {
+            isPicked = true;
+            Debug.Log("物品被拾取: " + itemName);
+            
+            // 更新HUD物品进度
+            if (hudControl != null)
+            {
+                hudControl.IncreaseItemsProgress();
+            }
+            
+            // 隐藏高亮
+            HideHighlight();
+            
+            // 显示物品详情
+            if (detailPanelPrefab != null)
+            {
+                Debug.Log("使用指定的详情面板: " + detailPanelPrefab.name);
+                detailPanelPrefab.ShowItemDetail(this);
+            }
+            else
+            {
+                Debug.Log("尝试查找默认详情界面...");
+                // 尝试查找默认详情界面
+                ObjectDetail objectDetail = FindObjectOfType<ObjectDetail>();
+                if (objectDetail != null)
+                {
+                    Debug.Log("找到默认详情界面，显示详情");
+                    objectDetail.ShowItemDetail(this);
+                }
+                else
+                {
+                    Debug.LogError("未找到任何详情界面！物品: " + itemName);
+                }
+            }
+            
+            // 销毁物体（在物体显示详情界面后）
+            Destroy(gameObject);
+        }
     }
 }
