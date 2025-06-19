@@ -9,6 +9,7 @@ public class ObjectDetail : MonoBehaviour
     public GameObject detailPanel;
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescriptionText;
+    public TextMeshProUGUI itemEraText;  // 添加年代显示文本
     public RawImage displayImage;
     
     [Header("渲染设置")]
@@ -211,7 +212,7 @@ public class ObjectDetail : MonoBehaviour
         // 隐藏HUD
         if (hudControl != null)
         {
-            hudControl.HideAllHUDElements();  // 修改这里
+            hudControl.HideAllHUDElements();
         }
         
         // 显示鼠标并解锁
@@ -224,6 +225,10 @@ public class ObjectDetail : MonoBehaviour
             
         if (itemDescriptionText)
             itemDescriptionText.text = item.itemDescription;
+            
+        // 添加年代显示
+        if (itemEraText)
+            itemEraText.text = item.itemEra;
         
         // 显示3D模型
         if (objectManager)
