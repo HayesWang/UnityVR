@@ -53,8 +53,6 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-*.mp3.meta
-*.assest
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -91,3 +89,7 @@ Packages/packages-lock.json
 ProjectSettings/PackageManagerSettings.asset
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 ProjectSettings/ProjectVersion.txt
+
+# Custom additions
+*.mp3.meta
+*.asset
