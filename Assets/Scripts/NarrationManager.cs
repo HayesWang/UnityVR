@@ -352,4 +352,50 @@ public class NarrationManager : MonoBehaviour
         // 记录日志，方便调试
         Debug.Log("NarrationManager: HUD已恢复显示");
     }
+
+    /// <summary>
+    /// 显示指定的旁白内容和音频
+    /// </summary>
+    public void ShowNarration(string narrationContent, AudioClip audioClip)
+    {
+        // 检查是否有内容要显示
+        if (string.IsNullOrEmpty(narrationContent) && audioClip == null)
+        {
+            Debug.LogWarning("旁白内容和音频都为空，无法显示旁白");
+            return;
+        }
+        
+        // 创建临时旁白页面数组
+        NarrationPage[] tempPages = new NarrationPage[1];
+        tempPages[0] = new NarrationPage
+        {
+            content = narrationContent,
+            voiceClip = audioClip,
+            displayTime = audioClip != null ? audioClip.length + 1f : 5f // 如果有音频，持续时间为音频长度+1秒，否则为5秒
+        };
+        
+        // 临时保存原始页面
+        NarrationPage[] originalPages = narrationPages;
+        
+        // 使用新的临时页面
+        narrationPages = tempPages;
+        
+        // 重置并显示旁白
+        ResetNarration();
+        
+        // 在协程结束后恢复原始页面
+        StartCoroutine(RestoreOriginalPages(originalPages));
+    }
+
+    /// <summary>
+    /// 恢复原始旁白页面
+    /// </summary>
+    private IEnumerator RestoreOriginalPages(NarrationPage[] originalPages)
+    {
+        // 等待当前旁白完成（等待旁白变为非活动状态）
+        yield return new WaitUntil(() => !IsNarrationActive);
+        
+        // 恢复原始页面
+        narrationPages = originalPages;
+    }
 }

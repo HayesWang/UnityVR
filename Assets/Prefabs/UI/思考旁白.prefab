@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7B2C\u4E00\u884C\n\u7B2C\u4E8C\u884C"
+  m_text: "\u94B1\u5305\u662F\u7A7A\u7684\uFF01\u4E00\u5B9A\u662F\u786C\u5E01\u4E0D\u5C0F\u5FC3\u6389\u51FA\u53BB\u4E86..."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
-  m_sharedMaterial: {fileID: 5675399759180289191, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f7d49e44cfd04072b962c4649bead01, type: 2}
+  m_sharedMaterial: {fileID: 4089814718633245986, guid: 8f7d49e44cfd04072b962c4649bead01, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -250,10 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   narrationPages:
-  - content: "2002\u5E74\uFF0C\u590F\uFF0C\u6211\u521A\u521A\u7ED3\u675F\u4E86\u56DB\u5E74\u7EA7\u671F\u672B\u8003\u8BD5\uFF0C\u4F46\u7238\u7238\u7ED9\u6211\u7684\u96F6\u82B1\u94B1\u88AB\u6211\u5F04\u4E22\u4E86"
-    displayTime: 0
-    voiceClip: {fileID: 0}
-  - content: "\u5728\u4E8C\u697C\u3002\u3002\u3002"
+  - content: 
     displayTime: 0
     voiceClip: {fileID: 0}
   autoProgress: 0
@@ -262,7 +259,7 @@ MonoBehaviour:
   textDisplay: {fileID: 2958149311962978814}
   narrationPanel: {fileID: 7051174740238043920}
   fadeOutDuration: 1.5
-  textColor: {r: 1, g: 1, b: 1, a: 1}
+  textColor: {r: 0, g: 0, b: 0, a: 1}
   audioSource: {fileID: 0}
   hideHUDDuringNarration: 0
   hudControl: {fileID: 0}

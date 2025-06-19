@@ -206,7 +206,7 @@ public class NarrationTrigger : MonoBehaviour
     }
 
     // 显示物体描边
-    private void ShowHighlight()
+    public void ShowHighlight()
     {
         if (outlineObject != null && (!canInteractOnce || !hasInteracted))
         {
@@ -215,7 +215,7 @@ public class NarrationTrigger : MonoBehaviour
     }
 
     // 隐藏物体描边
-    private void HideHighlight()
+    public void HideHighlight()
     {
         if (outlineObject != null)
         {
