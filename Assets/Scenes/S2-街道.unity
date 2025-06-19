@@ -423,6 +423,18 @@ PrefabInstance:
       propertyPath: narrationManager
       value: 
       objectReference: {fileID: 1047769640}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5989401287847776840, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_Name
       value: "\u9762\u644A"
@@ -1014,7 +1026,7 @@ MonoBehaviour:
   itemEra: "2008\u5E74\uFF0C\u590F"
   pickUpDistance: 4
   isPicked: 0
-  canPickup: 0
+  canPickup: 1
   itemThumbnail: {fileID: 0}
   itemNameColor: {r: 1, g: 1, b: 1, a: 1}
   outlineColor: {r: 1, g: 0.8, b: 0, a: 1}
@@ -1154,7 +1166,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2399615828849427677, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.33
+      value: -25.51
       objectReference: {fileID: 0}
     - target: {fileID: 2399615828849427677, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1162,7 +1174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2399615828849427677, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -36.1
+      value: -35.03
       objectReference: {fileID: 0}
     - target: {fileID: 2399615828849427677, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1201,8 +1213,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6736110}
     - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: interactionDistance
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5989401287847776840, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_Name
@@ -1519,7 +1543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7596938708471201296, guid: d9d6a259eeb40ea4abef560957556671, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.7440894
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 7596938708471201296, guid: d9d6a259eeb40ea4abef560957556671, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1981,11 +2005,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2399615828849427677, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.236
+      value: -24.94
       objectReference: {fileID: 0}
     - target: {fileID: 2399615828849427677, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.053
+      value: 2.14
       objectReference: {fileID: 0}
     - target: {fileID: 2399615828849427677, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2032,8 +2056,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1493517882}
     - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: interactionDistance
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5989401287847776840, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_Name
