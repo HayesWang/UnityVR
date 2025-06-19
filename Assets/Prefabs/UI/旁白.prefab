@@ -144,7 +144,7 @@ MonoBehaviour:
   m_text: "<rotate=90>\u65B0\u7684\u5B57\u4F53\n\u5728\u54EA\u91CC\n\u90A3\u522B\u5427\n\u771F\u7684\u5047\u7684\n\u56DB\u516D\u5217"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
-  m_sharedMaterial: {fileID: 3051592487266772592, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
+  m_sharedMaterial: {fileID: 8839851688929456498, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
