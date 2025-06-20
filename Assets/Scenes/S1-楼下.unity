@@ -198,9 +198,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptText
+      value: "\u4E09\u8F6E\u8F66"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: narrationManager
       value: 
       objectReference: {fileID: 96819667}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5989401287847776840, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: m_Name
       value: "\u4E09\u8F6E\u8F66\u65C1\u767D"
@@ -1728,7 +1744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3062252750056744100, guid: d79b25b6f3ce24527ac0e3f42cd253a6, type: 3}
       propertyPath: currentEra
-      value: 2002
+      value: "2002\u5E74\u590F"
       objectReference: {fileID: 0}
     - target: {fileID: 3062252750056744100, guid: d79b25b6f3ce24527ac0e3f42cd253a6, type: 3}
       propertyPath: keyboardTriggerSprite

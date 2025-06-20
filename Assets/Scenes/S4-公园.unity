@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -218,10 +218,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840592467}
     m_Modifications:
-    - target: {fileID: 6910077790029409732, guid: 029bb9be49c5b214f96bb0db884a8469, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a34d583b95ccb4151bb039457ff1667c, type: 3}
       propertyPath: m_LocalScale.x
       value: 30
@@ -287,6 +283,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6910077790029409732, guid: a34d583b95ccb4151bb039457ff1667c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910077790029409732, guid: 029bb9be49c5b214f96bb0db884a8469, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
@@ -1811,6 +1811,18 @@ PrefabInstance:
       propertyPath: narrationManager
       value: 
       objectReference: {fileID: 836262254}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
+      propertyPath: promptTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4635748150408913358, guid: c2379347134c842a2946535afe41c0a7, type: 3}
       propertyPath: interactionDistance
       value: 1.4
