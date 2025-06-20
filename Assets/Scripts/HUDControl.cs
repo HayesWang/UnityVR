@@ -34,6 +34,11 @@ public class HUDControl : MonoBehaviour
     public TextMeshProUGUI narrationsProgressText;     // 语音进度文本框
     public TextMeshProUGUI itemsProgressText;          // 物品进度文本框
 
+    [Header("年代设置")]
+    [SerializeField] private string currentEra = "2024";  // 当前年代
+    public TextMeshProUGUI eraDisplayText;              // 年代显示文本组件
+    public bool showEraInHUD = true;                    // 是否在HUD中显示年代
+
     // 语音进度
     private int collectedNarrationsCount = 0;          // 已收集语音数量
     private int totalNarrationsCount = 0;              // 总语音数量
@@ -145,6 +150,17 @@ public class HUDControl : MonoBehaviour
         {
             itemsProgressText.text = "";
             ApplyTextOutline(itemsProgressText);
+        }
+
+        // 初始化年代显示
+        if (eraDisplayText != null && showEraInHUD)
+        {
+            eraDisplayText.text = currentEra;
+            ApplyTextOutline(eraDisplayText);
+        }
+        else if (eraDisplayText != null)
+        {
+            eraDisplayText.gameObject.SetActive(false);
         }
 
         // 初始化进度
@@ -468,6 +484,51 @@ public class HUDControl : MonoBehaviour
     }
 
     /// <summary>
+    /// 设置当前年代
+    /// </summary>
+    /// <param name="era">年代字符串</param>
+    public void SetCurrentEra(string era)
+    {
+        currentEra = era;
+        UpdateEraDisplay();
+    }
+
+    /// <summary>
+    /// 获取当前年代
+    /// </summary>
+    /// <returns>当前年代字符串</returns>
+    public string GetCurrentEra()
+    {
+        return currentEra;
+    }
+
+    /// <summary>
+    /// 更新年代显示
+    /// </summary>
+    private void UpdateEraDisplay()
+    {
+        if (eraDisplayText != null && showEraInHUD)
+        {
+            eraDisplayText.text = currentEra;
+            eraDisplayText.gameObject.SetActive(true);
+        }
+        else if (eraDisplayText != null)
+        {
+            eraDisplayText.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// 切换年代显示
+    /// </summary>
+    /// <param name="show">是否显示年代</param>
+    public void ToggleEraDisplay(bool show)
+    {
+        showEraInHUD = show;
+        UpdateEraDisplay();
+    }
+
+    /// <summary>
     /// 隐藏所有HUD元素
     /// </summary>
     public void HideAllHUDElements()
@@ -493,6 +554,10 @@ public class HUDControl : MonoBehaviour
                 
             if (itemsProgressText != null)
                 itemsProgressText.gameObject.SetActive(false);
+
+            // 隐藏年代显示
+            if (eraDisplayText != null)
+                eraDisplayText.gameObject.SetActive(false);
         }
         
         Debug.Log("HUD元素已隐藏");
@@ -525,6 +590,10 @@ public class HUDControl : MonoBehaviour
             // 触发按钮根据设置决定是否显示
             if (triggerButtonImage != null && !showTriggerOnlyWithItem)
                 triggerButtonImage.gameObject.SetActive(true);
+
+            // 年代显示根据设置决定是否显示
+            if (eraDisplayText != null && showEraInHUD)
+                eraDisplayText.gameObject.SetActive(true);
         }
         
         Debug.Log("HUD元素已恢复显示");

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_text: "<rotate=90>\u65B0\u7684\u5B57\u4F53\n\u5728\u54EA\u91CC\n\u90A3\u522B\u5427\n\u771F\u7684\u5047\u7684\n\u56DB\u516D\u5217"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
-  m_sharedMaterial: {fileID: 3051592487266772592, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
+  m_sharedMaterial: {fileID: 270365461706052303, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 30
   m_wordSpacing: 0
-  m_lineSpacing: 80
+  m_lineSpacing: 77
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 141.77264, y: 0, z: 453.35117, w: 0}
+  m_margin: {x: 141.77264, y: 0, z: 387.27478, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -290,9 +290,12 @@ MonoBehaviour:
   defaultPanelColor: {r: 1, g: 1, b: 1, a: 1}
   defaultItemThumbnail: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 0.2
+  outlineWidth: 0.01
   narrationsProgressText: {fileID: 8583818791355692130}
   itemsProgressText: {fileID: 3019892253388451820}
+  currentEra: 2024
+  eraDisplayText: {fileID: 2860825026510278817}
+  showEraInHUD: 1
   hudCanvasGroup: {fileID: 230571411312752138}
 --- !u!225 &230571411312752138
 CanvasGroup:
@@ -374,7 +377,7 @@ MonoBehaviour:
   m_text: 1/2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
-  m_sharedMaterial: {fileID: 5675399759180289191, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
+  m_sharedMaterial: {fileID: -1855953412615176535, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -549,7 +552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 290.99994, y: 0}
+  m_AnchoredPosition: {x: 357, y: 0}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7117260576429208004
@@ -582,8 +585,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7ab470164d55f4e07b4087e17be154af, type: 2}
-  m_sharedMaterial: {fileID: 7109075510241761488, guid: 7ab470164d55f4e07b4087e17be154af, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
+  m_sharedMaterial: {fileID: -1855953412615176535, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -614,7 +617,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -643,7 +646,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -83.837036, w: 0}
+  m_margin: {x: -149.20169, y: 0, z: -83.837036, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -792,7 +795,7 @@ MonoBehaviour:
   m_text: "2022\u5E74\u590F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
-  m_sharedMaterial: {fileID: 3051592487266772592, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
+  m_sharedMaterial: {fileID: 270365461706052303, guid: 143631c7b0f874b9897b051f6da75b23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -926,7 +929,7 @@ MonoBehaviour:
   m_text: 1/2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
-  m_sharedMaterial: {fileID: 5675399759180289191, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
+  m_sharedMaterial: {fileID: -1855953412615176535, guid: b45344237eea34ac7a128fcfeae8f2f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

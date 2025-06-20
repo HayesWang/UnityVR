@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneTransitionTrigger : MonoBehaviour
 {
@@ -19,9 +20,16 @@ public class SceneTransitionTrigger : MonoBehaviour
     public GameObject transitionParticlePrefab; // 场景转换粒子特效预制体
     public float particleEffectDuration = 1.5f; // 粒子特效持续时间
 
+    [Header("旁白设置")]
+    public bool playNarrationBeforeTransition = false; // 是否在切换前播放旁白
+    public NarrationManager narrationManager; // 旁白管理器引用
+    [Tooltip("旁白播放完成后等待的额外时间(秒)")]
+    public float waitAfterNarration = 1f; // 旁白播放完成后的等待时间
+
     private bool isPlayerNearby = false;
     private HUDControl hudControl;
     private Transform mainCamera;
+    private bool isTransitioning = false; // 防止重复触发
     
     // 描边相关
     private GameObject outlineObject;
@@ -39,29 +47,43 @@ public class SceneTransitionTrigger : MonoBehaviour
         CreateOutlineMaterial();
         CreateOutlineObject();
 
-        // 移除了默认粒子特效的创建，只使用指定的预制体
+        // 如果未指定旁白管理器，尝试查找场景中的旁白管理器
+        if (playNarrationBeforeTransition && narrationManager == null)
+        {
+            narrationManager = FindObjectOfType<NarrationManager>();
+            if (narrationManager == null)
+            {
+                Debug.LogWarning("启用了旁白播放但未找到NarrationManager，请在Inspector中分配或添加到场景中");
+            }
+        }
     }
 
     private void Update()
     {
+        // 如果正在转换中，不处理输入
+        if (isTransitioning)
+            return;
+            
         // 检查与相机的距离
         CheckDistance();
         
-        // 如果玩家在附近，按下交互键时才播放粒子效果并加载场景
+        // 如果玩家在附近，按下交互键时触发场景转换
         if (isPlayerNearby && Input.GetKeyDown(interactionKey))
         {
-            PlayTransitionEffectAndLoadScene();
+            StartTransition();
         }
     }
     
-    // 播放转场特效并加载场景
-    private void PlayTransitionEffectAndLoadScene()
+    // 开始场景转换流程
+    private void StartTransition()
     {
         if (string.IsNullOrEmpty(targetSceneName))
         {
             Debug.LogError("目标场景名称未设置!");
             return;
         }
+
+        isTransitioning = true;
         
         // 停止显示交互提示
         if (hudControl != null)
@@ -69,7 +91,42 @@ public class SceneTransitionTrigger : MonoBehaviour
             hudControl.HideItemInfo();
             hudControl.HideTriggerButton();
         }
+
+        // 如果需要播放旁白
+        if (playNarrationBeforeTransition && narrationManager != null)
+        {
+            Debug.Log("播放旁白后再切换场景");
+            StartCoroutine(PlayNarrationThenTransition());
+        }
+        else
+        {
+            // 直接播放转场特效并加载场景
+            PlayTransitionEffectAndLoadScene();
+        }
+    }
+    
+    // 播放旁白然后切换场景的协程
+    private IEnumerator PlayNarrationThenTransition()
+    {
+        // 重置并开始播放旁白
+        narrationManager.ResetNarration();
         
+        // 等待旁白播放完成
+        while (narrationManager.IsPlaying())
+        {
+            yield return null;
+        }
+        
+        // 旁白播放完成后等待额外时间
+        yield return new WaitForSeconds(waitAfterNarration);
+        
+        // 播放转场特效并加载场景
+        PlayTransitionEffectAndLoadScene();
+    }
+    
+    // 播放转场特效并加载场景
+    private void PlayTransitionEffectAndLoadScene()
+    {
         // 播放粒子特效 - 只在按下交互按钮时播放指定的粒子特效
         if (transitionParticlePrefab != null)
         {
@@ -243,12 +300,6 @@ public class SceneTransitionTrigger : MonoBehaviour
                 hudControl.HideTriggerButton();
             }
         }
-    }
-
-    // 加载目标场景 (替换为使用PlayTransitionEffectAndLoadScene)
-    private void LoadTargetScene()
-    {
-        PlayTransitionEffectAndLoadScene();
     }
 
     // 检查与相机的距离
